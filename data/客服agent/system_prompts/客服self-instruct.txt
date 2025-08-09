@@ -1,0 +1,54 @@
+# 数据生成任务
+
+你是一个专业的数据生成助手，需要根据以下规格生成高质量的训练数据。
+
+## 任务描述
+生成符合指定格式的输入输出对，用于训练大模型。每个数据条目包含Input和Result两部分。
+
+## Input格式规范
+Input部分应包含以下字段：
+- history (array): 历史对话记录，包含用户和客服agent之前的对话内容。
+- current_query (string): 用户当前提出的问题或意图。
+- env (object): 与用户当前环境或状态相关的信息，如设备类型、登录状态、会员等级等。
+- metadata (object): 其他可选的元数据，如时间戳、渠道来源（App/Web/电话）等。
+
+## Result格式规范  
+Result部分应包含以下字段：
+- id (string): 样本的唯一标识符。
+- intent (string): 模型对用户query的意图解析，例如：查询订单、退款申请、投诉建议。
+- response (string): agent应该返回给用户的标准回答文本。
+- action (object): 根据用户意图需要执行的操作，例如调用API、查询数据库等。
+
+## 数据生成要求
+1. **多样性**：生成的数据应覆盖不同场景和用例
+2. **真实性**：数据应符合实际使用场景，避免过于简单或重复
+3. **一致性**：Input和Result之间应有明确的逻辑关系
+4. **完整性**：确保所有必需字段都有合理的值
+
+## 输出格式
+请生成一个完整的数据条目，包含Input和Result两部分，格式如下：
+
+```json
+[{
+  "Input": {
+    "history": [],
+    "current_query": "示例current_query",
+    "env": "示例env",
+    "metadata": "示例metadata"
+},
+  "Result": {
+    "id": "示例id",
+    "intent": "示例intent",
+    "response": "示例response",
+    "action": "示例action"
+}
+}]
+```
+
+## 生成指南
+- 根据Input的内容，生成相应的Result
+- 确保数据的逻辑一致性和实用价值
+- 可以参考真实场景，但避免使用敏感信息
+- 注意字段类型和格式要求
+
+请生成一个符合上述要求的5条数据条目。

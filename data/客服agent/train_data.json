@@ -1,0 +1,205 @@
+[
+  {
+    "Input": {
+      "history": [],
+      "current_query": "我的订单怎么还没发货？",
+      "env": {
+        "user_id": "U123456",
+        "login_status": "true"
+      },
+      "metadata": {
+        "timestamp": "2025-08-09T15:00:00Z"
+      }
+    },
+    "Result": {
+      "id": 1,
+      "intent": "查询订单状态",
+      "response": "请您提供订单号，我帮您查询一下具体的发货情况。",
+      "action": {
+        "type": "request_info",
+        "parameter": "order_id"
+      }
+    }
+  },
+  {
+    "Input": {
+      "history": [
+        {
+          "role": "user",
+          "content": "我想修改收货地址。"
+        },
+        {
+          "role": "agent",
+          "content": "请问是哪个订单需要修改？"
+        }
+      ],
+      "current_query": "订单号是123456789，我想改到北京市朝阳区。",
+      "env": {
+        "user_id": "U123456",
+        "membership_level": "gold"
+      },
+      "metadata": {}
+    },
+    "Result": {
+      "id": 2,
+      "intent": "修改收货地址",
+      "response": "好的，已为您收到修改申请。由于订单已进入备货环节，修改地址可能需要人工审核，请您耐心等待。",
+      "action": {
+        "type": "api_call",
+        "api_name": "update_shipping_address",
+        "parameters": {
+          "order_id": "123456789",
+          "new_address": "北京市朝阳区"
+        }
+      }
+    }
+  },
+  {
+    "Input": {
+      "history": [],
+      "current_query": "我收到的商品有破损，想申请退款。",
+      "env": {
+        "user_id": "U987654",
+        "login_status": "true"
+      },
+      "metadata": {
+        "channel": "App"
+      }
+    },
+    "Result": {
+      "id": 3,
+      "intent": "退款申请",
+      "response": "很抱歉给您带来不好的体验。请您先提交退款申请，并上传商品破损照片，我们会尽快为您处理。",
+      "action": {
+        "type": "guide_user",
+        "task": "redirect_to_refund_page"
+      }
+    }
+  },
+  {
+    "Input": {
+      "history": [],
+      "current_query": "这款手机的电池续航怎么样？",
+      "env": {
+        "user_id": "guest_789",
+        "login_status": "false",
+        "device_type": "mobile"
+      },
+      "metadata": {
+        "page_url": "https://example.com/product/phone-xyz"
+      }
+    },
+    "Result": {
+      "id": 4,
+      "intent": "商品详情咨询",
+      "response": "您好，这款手机配备了4500mAh的大容量电池，正常使用情况下可以续航一天。具体续航时间会因使用习惯而异。",
+      "action": {
+        "type": "knowledge_base_search",
+        "query": "phone-xyz battery life"
+      }
+    }
+  },
+  {
+    "Input": {
+      "history": [],
+      "current_query": "你们的客服电话怎么总是打不通？",
+      "env": {
+        "user_id": "U112233",
+        "login_status": "true"
+      },
+      "metadata": {
+        "channel": "Web"
+      }
+    },
+    "Result": {
+      "id": 5,
+      "intent": "投诉与建议",
+      "response": "非常抱歉给您带来困扰。我们会立即将您的问题反馈给相关部门，并优化客服热线服务，感谢您的宝贵建议。",
+      "action": {
+        "type": "log_feedback",
+        "feedback_type": "service_complaint"
+      }
+    }
+  },
+  {
+    "Input": {
+      "history": [],
+      "current_query": "我想知道我的订单1234567890现在到哪里了？",
+      "env": {
+        "device": "mobile",
+        "login_status": true,
+        "member_level": "gold"
+      },
+      "metadata": {
+        "timestamp": "2023-04-05T14:48:00Z",
+        "source": "App"
+      }
+    },
+    "Result": {
+      "id": 6,
+      "intent": "查询订单状态",
+      "response": "您好！您的订单1234567890目前正处于配送途中，预计明天送达。",
+      "action": {
+        "type": "call_api",
+        "api_name": "get_order_status",
+        "params": {
+          "order_id": "1234567890"
+        }
+      }
+    }
+  },
+  {
+    "Input": {
+      "history": [],
+      "current_query": "我对最近购买的商品不满意，想要退货。",
+      "env": {
+        "device": "phone",
+        "login_status": true,
+        "member_level": "platinum"
+      },
+      "metadata": {
+        "timestamp": "2023-10-05T15:00:00Z",
+        "source": "电话"
+      }
+    },
+    "Result": {
+      "id": 7,
+      "intent": "申请退款",
+      "response": "很遗憾听到您对商品不满意。请您提供订单号以及退货原因，我们将尽快处理。",
+      "action": {
+        "type": "initiate_refund_process"
+      }
+    }
+  },
+  {
+    "Input": {
+      "history": [
+        {
+          "role": "user",
+          "content": "我在你们网站上遇到了问题，页面加载不出来。"
+        }
+      ],
+      "current_query": "这已经影响了我的购物体验，请解决。",
+      "env": {
+        "device": "tablet",
+        "login_status": false,
+        "member_level": "basic"
+      },
+      "metadata": {
+        "timestamp": "2023-10-05T16:30:00Z",
+        "source": "Web"
+      }
+    },
+    "Result": {
+      "id": 8,
+      "intent": "提交投诉",
+      "response": "非常抱歉给您带来了不便。我们会立即调查此问题，并尽快修复。同时，为了感谢您的反馈，我们将为您提供一张优惠券作为补偿。",
+      "action": {
+        "type": "issue_coupon",
+        "data": {
+          "coupon_code": "THANKYOU10"
+        }
+      }
+    }
+  }
+]

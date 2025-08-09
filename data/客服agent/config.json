@@ -1,0 +1,52 @@
+{
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "history": {
+        "type": "array",
+        "description": "历史对话记录，包含用户和客服agent之前的对话内容。"
+      },
+      "current_query": {
+        "type": "string",
+        "description": "用户当前提出的问题或意图。"
+      },
+      "env": {
+        "type": "object",
+        "description": "与用户当前环境或状态相关的信息，如设备类型、登录状态、会员等级等。"
+      },
+      "metadata": {
+        "type": "object",
+        "description": "其他可选的元数据，如时间戳、渠道来源（App/Web/电话）等。"
+      }
+    },
+    "required": [
+      "current_query"
+    ]
+  },
+  "result_schema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "样本的唯一标识符。"
+      },
+      "intent": {
+        "type": "string",
+        "description": "模型对用户query的意图解析，例如：查询订单、退款申请、投诉建议。"
+      },
+      "response": {
+        "type": "string",
+        "description": "agent应该返回给用户的标准回答文本。"
+      },
+      "action": {
+        "type": "object",
+        "description": "根据用户意图需要执行的操作，例如调用API、查询数据库等。"
+      }
+    },
+    "required": [
+      "id",
+      "intent",
+      "response"
+    ]
+  }
+}
